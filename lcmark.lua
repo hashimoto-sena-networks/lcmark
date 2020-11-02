@@ -1,5 +1,5 @@
 local cmark = require("cmark")
-local yaml = require("yaml")
+local lyaml = require("lyaml")
 local lpeg = require("lpeg")
 
 local S, C, P, R, V, Ct =
@@ -144,7 +144,7 @@ local parse_document_with_metadata = function(inp, options)
   if meta_end then
     if meta_end then
       local ok, yaml_meta = pcall(function ()
-                              return yaml.load(string.sub(inp, 1, meta_end))
+                              return lyaml.load(string.sub(inp, 1, meta_end))
                             end)
       if not ok then
         return nil, yaml_meta -- the error message
